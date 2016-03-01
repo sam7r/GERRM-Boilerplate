@@ -1,27 +1,32 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const PATHS = {
-  app: path.join(__dirname, 'src/app'),
-  build: path.join(__dirname, 'build')
+  app: path.join(__dirname, 'src/app/index'),
+  build: path.join(__dirname, 'public/js')
 };
 
 const config = {
-  devtool: 'eval-source-map',
-  entry: PATHS.app,
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    PATHS.app
+  ],
   output: {
     path: PATHS.build,
-    filename: 'build.js',
-    publicPath: '/'
+    publicPath: 'http://localhost:8080/js/',
+    filename: 'build.js'
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['jsx', 'babel'],
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react']
       }
     ]
-  }
+  },
+  watch: true
 };
 
-export default config;
+module.exports = config;

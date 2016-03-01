@@ -1,18 +1,26 @@
-import path from 'path';
+import config from './config';
 import express from 'express';
-import webpack from 'webpack';
-import webpackMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import config from '../webpack.config.js';
+import handlebars from 'express-handlebars'
 
 const app = express();
-const compiler = webpack(config);
 
-app.use(express.static(__dirname + '../build'));
-app.use(webpackMiddleware(compiler));
-app.use(webpackHotMiddleware(compiler));
-app.get('*', function response(req, res) {
-  res.sendFile(path.join(__dirname, '../build/index.html'));
-});
+app.engine('html', handlebars({ extname: 'html' }));
 
-app.listen(3000);
+// Make the public folder available to all pages within the app
+app.use(express.static(config.publicFolder));
+
+// Set destination folder of app views
+app.set('views', config.viewsFolder);
+
+// Define view file type
+app.set('view engine', 'html');
+
+app.get('/', (req, res) => res.render("app"));
+
+const port = process.env.PORT || 3000;
+app.listen(port);
+
+// Console output
+console.log(`Node listening on port ${port}`);
+console.log(`Serving views from ${config.viewsFolder}`);
+console.log(`Serving resources from ${config.publicFolder}`);
