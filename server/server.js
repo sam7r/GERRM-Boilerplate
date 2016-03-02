@@ -1,24 +1,38 @@
-import config from './config';
 import express from 'express';
-import handlebars from 'express-handlebars'
+import httpProxy from 'http-proxy';
+import path from 'path';
+import bundle from './bundle';
 
-const app = express();
+const config = {
+  publicFolder: path.join(__dirname, '..', 'public')
+};
 
-app.engine('html', handlebars({ extname: 'html' }));
+var proxy = httpProxy.createProxyServer({
+  changeOrigin: true
+});
 
-// // Make the public folder available to all pages within the app
+var app = express();
+
+var isProduction = process.env.NODE_ENV === 'production';
+var port = isProduction ? process.env.PORT : 3000;
+
 app.use(express.static(config.publicFolder));
 
-// // Set destination folder of app views
-app.set('views', config.viewsFolder);
+if (!isProduction) {
 
-// Define view file type
-app.set('view engine', 'html');
+  bundle();
+  app.all('/assets/*', function (req, res) {
+    proxy.web(req, res, {
+        target: 'http://localhost:8080'
+    });
+  });
 
-const port = process.env.PORT || 3000;
-app.listen(port);
+}
 
-// Console output
-console.log(`Node listening on port ${port}`);
-console.log(`Serving views from ${config.viewsFolder}`);
-console.log(`Serving resources from ${config.publicFolder}`);
+proxy.on('error', function(e) {
+  console.log('Could not connect to proxy, please try again...');
+});
+
+app.listen(port, function () {
+  console.log('Server running on port ' + port);
+});

@@ -3,20 +3,15 @@ const path = require('path');
 
 const PATHS = {
   app: path.join(__dirname, 'src/app/index'),
-  build: path.join(__dirname, 'public', 'assets'),
+  build: path.join(__dirname, 'public', 'build'),
   node_modules: path.join(__dirname, 'node_modules')
 };
 
 const config = {
-  devtool: 'eval',
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    PATHS.app
-  ],
+  devtool: 'source-map',
+  entry: PATHS.app,
   output: {
     path: PATHS.build,
-    publicPath: '/assets/',
     filename: 'bundle.js'
   },
   module: {
@@ -24,11 +19,10 @@ const config = {
       {
         test: /\.js$/,
         exclude: PATHS.node_modules,
-        loaders: ['react-hot', 'babel']
+        loaders: ['babel']
       }
     ]
-  },
-  plugins: [new Webpack.HotModuleReplacementPlugin()]
+  }
 };
 
 module.exports = config;

@@ -4,29 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node --debug --stage 0 server/server.js",
-    "start-dev": "webpack-dev-server --hot --progress --content-base public/",
-    "webpack": "node_modules/.bin/webpack",
-    "build-js": "webpack src/app/index.js public/js/build.js"
+    "start": "babel-node --debug server/server.js",
+    "build-prod": "SET NODE_ENV=production & webpack -p --config webpack.production.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.6.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
-    "babel-preset-react-hmre": "^1.0.1",
     "express": "^4.13.4",
     "express-handlebars": "^2.0.1",
+    "http-proxy": "^1.13.2",
     "jsx-loader": "^0.13.2",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-hot-loader": "^1.3.0",
-    "react-transform": "0.0.3",
     "webpack": "^1.12.12",
-    "webpack-dev-middleware": "^1.5.1",
-    "webpack-dev-server": "^1.14.1",
-    "webpack-hot-middleware": "^2.6.4"
+    "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
     "babel-core": "^6.4.5",
