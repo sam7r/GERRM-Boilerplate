@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 
 const PATHS = {
   app: path.join(__dirname, 'src/app/index'),
@@ -22,11 +21,10 @@ const config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react']
+        loaders: ['react-hot', 'babel']
       }
     ]
-  },
-  watch: true
+  }
 };
 
 module.exports = config;

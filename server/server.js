@@ -6,16 +6,14 @@ const app = express();
 
 app.engine('html', handlebars({ extname: 'html' }));
 
-// Make the public folder available to all pages within the app
+// // Make the public folder available to all pages within the app
 app.use(express.static(config.publicFolder));
 
-// Set destination folder of app views
+// // Set destination folder of app views
 app.set('views', config.viewsFolder);
 
 // Define view file type
 app.set('view engine', 'html');
-
-app.get('/', (req, res) => res.render("app"));
 
 const port = process.env.PORT || 3000;
 app.listen(port);

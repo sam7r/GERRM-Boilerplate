@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node --debug --stage 0 server/server.js",
-    "start-dev": "webpack-dev-server --hot --inline --content-base public/",
+    "start-dev": "webpack-dev-server --hot --progress --content-base public/",
     "webpack": "node_modules/.bin/webpack",
     "build-js": "webpack src/app/index.js public/js/build.js"
-    
   },
   "keywords": [],
   "author": "",
