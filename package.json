@@ -1,7 +1,7 @@
 {
-  "name": "MERN-boilerplate",
+  "name": "GERRM-boilerplate",
   "version": "1.0.0",
-  "description": "",
+  "description": "Boilerplate code for development environment using GraphQL, Express, React, Relay & Mongo",
   "main": "index.js",
   "scripts": {
     "start": "babel-node --debug server/server.js",
