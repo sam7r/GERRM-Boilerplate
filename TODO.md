@@ -1,31 +1,24 @@
 # MERN Boilerplate TODO's
 
-- Define scope / use case of application : DONE
-- Define application folder / data structure : DONE
-- Define library stack
-
-http://attackofzach.com/tdd-bdd-mean-part1/
-
 ## Main Tasks
 
-### Node/Express
-- Setup Node / Express server
-
 ### MongoDB
-- Setup Mongo database on server
+- Setup Mongo database on docker container
 
-### Firebase
-- Setup test Firebase database
+### React & Relay
+- Setup basic React App with Relay (Flux) data implementation
 
-### React & Redux
-- Setup basic React App with Redux (Flux) data implementation
-
-### React/Redux Router
+### React-Router/Relay-Router
 - Setup browser history and routing within application
 
-### Redux & MongoDB/Firebase
+### Relay->GraphQL->MongoDB
 - Setup data stores between app and db
 - Allow for easy transitioning between different DB implementations i.e. Firebase
 
-### React + Redux & Express
+### React + Express | Hapi
 - Isomorphic app loading
+
+### Setup TDD & BDD tools and base scripts
+http://attackofzach.com/tdd-bdd-mean-part1/
+
+### CI Automated build/deploy work flow with Docker & AWS

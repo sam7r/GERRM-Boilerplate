@@ -1,27 +1,39 @@
 # MERN Developer Boilerplate
 
-### Project aim
-This boilerplate is meant to be as loose and as basic a startup package as possible, promoting modularization, creating a good starting point that can be changed and built upon, whilst using as many development / production environment enhancing tools.
+At present this boilerplate is to aid in a quick start to the development of a React application and should not be used for production purposes.
 
-## Tools used
-
-Server: Node/Express
-Database: MongoDB (Firebase support?)
-
-Application stack:
+#### Application stack:
+- Node/Express
 - React
-- Relay / GraphQL
-- MongoDB
+- Relay / GraphQL (TODO)
+- MongoDB (TODO)
 
-Task runner: Webpack
+Task runner: Webpack (with Hot Loader)  
 Dependency manager: NPM
 
-Application TDD suite: Mocha & Chai & Sinon
-Frontend BDD suite: Karma
+Application TDD suite: TBC | (Mocha & Chai & Sinon) (TODO)  
+Frontend BDD suite: TBC | (Karma) (TODO)
 
+## Setup
+Providing you currently have Node installed on your machine go ahead and run the following command.
+```
+npm install babel-cli -g
+```
 
-## Environment prerequisites
-### Node setup and version control
+Then go to the root of the folder and pull/update your dependencies.
+```
+npm install
+```
 
+You should now be ready to launch your app.
+Run the following and go to http://localhost:3000
+```
+npm start
+```
 
-## Download and setup
+## Production Build
+
+Although this is currently still being tweaked you can bundle your code using
+```
+npm run build-prod
+```
