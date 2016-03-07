@@ -3,16 +3,7 @@ import httpProxy from 'http-proxy';
 import path from 'path';
 import bundle from './bundle';
 import { MongoClient } from 'mongodb';
-
-const config = {
-  publicFolder: path.join(__dirname, '..', 'public'),
-  /*
-    If accessing locally use Docker container ACCESS URL
-    If accessing from another container user port 27017
-  */
-  mongoUrl: 'mongodb://192.168.99.100:32771',
-  mongoCollection: 'test'
-};
+import config from '../config';
 
 let db;
 let app = express();
@@ -34,18 +25,18 @@ if (!isProduction) {
     enabling Hot Reload for faster development
   */
   bundle();
-  app.all('/assets/*', function (req, res) {
+  app.all(`/${config.webPackDevFolder}/*`, function (req, res) {
     proxy.web(req, res, {
       // Virtual assets folder mapped to webpack dev server
-      target: 'http://localhost:8080'
+      target: config.webPackServer
     });
   });
 }
 
 app.get('/data/test', (req, res) => {
-  db.collection(config.mongoCollection).find({}).toArray((err, test) => {
+  db.collection(config.mongoCollection).find({}).toArray((err, items) => {
     if(err) throw err;
-    res.json(test);
+    res.json(items);
   });
 });
 

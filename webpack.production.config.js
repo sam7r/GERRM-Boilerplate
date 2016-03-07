@@ -1,9 +1,10 @@
 const Webpack = require('webpack');
 const path = require('path');
+const config = require('./config.js');
 
 const PATHS = {
-  app: path.join(__dirname, 'src/app/index'),
-  build: path.join(__dirname, 'public', 'build'),
+  app: config.sourceFolder,
+  build: path.join(config.publicFolder, config.webPackBuildFolder),
   node_modules: path.join(__dirname, 'node_modules')
 };
 

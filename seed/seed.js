@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 import User from '../data/schema/user';
+import config from '../config';
 
-mongoose.connect('mongodb://localhost/graphql');
+mongoose.connect(config.mongoUrl);
 
 var users = [
   {
@@ -26,7 +27,7 @@ var users = [
   }
 ];
 
-mongoose.connection.collections['users'].drop( function(err) {
+mongoose.connection.collections[config.mongoCollection].drop( function(err) {
 
   User.create(users, function(err, res){
     if (err) {

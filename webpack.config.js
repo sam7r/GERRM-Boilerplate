@@ -1,22 +1,23 @@
 const Webpack = require('webpack');
 const path = require('path');
+const config = require('./config.js');
 
 const PATHS = {
-  app: path.join(__dirname, 'src/app/index'),
-  build: path.join(__dirname, 'public', 'assets'),
+  app: config.sourceFolder,
+  build: path.join(config.publicFolder, config.webPackDevFolder),
   node_modules: path.join(__dirname, 'node_modules')
 };
 
 const config = {
   devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
+    `webpack-dev-server/client?${config.webPackServer}`,
     'webpack/hot/only-dev-server',
     PATHS.app
   ],
   output: {
     path: PATHS.build,
-    publicPath: '/assets/',
+    publicPath: `/${config.webPackDevFolder}/`,
     filename: 'bundle.js'
   },
   module: {
