@@ -17,7 +17,7 @@ Frontend BDD suite: TBC | (Karma) (TODO)
 ## Setup
 Providing you currently have Node installed on your machine go ahead and run the following command.
 ```
-npm install babel-cli -g
+npm install babel-cli webpack webpack-dev-server -g
 ```
 
 Then go to the root of the folder and pull/update your dependencies.
@@ -35,11 +35,14 @@ npm start
 If like me you would like to use Docker to run a MongoDB container I would recommend using KiteMatic https://kitematic.com/
 and pulling the container from the recommended page, alternatively you can use the Docker CLI by following instructions found at  https://hub.docker.com/_/mongo/.
 
-To access your database change the **config.mongoUrl** property in **server/server.js** to the URL of your mongodb.
+Change the **mongoUrl** in **config.js** to the URL of your mongo database.
 
-For non production this will generate a test collection with test data from **server/mongoTestData.js**
+A seed file has been setup for you start using some data on initial setup.
+```
+npm run seed
+```
 
-Express is setup to expose the chosen collections data at a speecific endpoint (currently ***/data/test***)
+Express is setup to expose the chosen collections data at a specific endpoint (currently ***/data/test***)
 
 ## Production Build
 
