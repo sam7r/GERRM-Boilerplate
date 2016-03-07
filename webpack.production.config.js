@@ -1,14 +1,14 @@
 const Webpack = require('webpack');
 const path = require('path');
-const config = require('./config.js');
+const config = require('./config');
 
 const PATHS = {
   app: config.sourceFolder,
-  build: path.join(config.publicFolder, config.webPackBuildFolder),
+  build: `${config.publicFolder}/${config.webPackBuildFolder}`,
   node_modules: path.join(__dirname, 'node_modules')
 };
 
-const config = {
+const wpConfig = {
   devtool: 'source-map',
   entry: PATHS.app,
   output: {
@@ -26,4 +26,4 @@ const config = {
   }
 };
 
-module.exports = config;
+module.exports = wpConfig;

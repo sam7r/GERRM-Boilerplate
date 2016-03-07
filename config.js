@@ -1,6 +1,6 @@
 const path = require('path');
 
-export default {
+const config = {
   publicFolder: path.join(__dirname, 'public'),
   sourceFolder: path.join(__dirname, 'src/app/index'),
   webPackServer: 'http://localhost:8080',
@@ -13,3 +13,5 @@ export default {
   mongoUrl: 'mongodb://192.168.99.100:32768',
   mongoCollection: 'users'
 }
+
+module.exports = config;

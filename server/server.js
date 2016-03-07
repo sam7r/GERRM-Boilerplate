@@ -2,7 +2,7 @@ import express from 'express';
 import httpProxy from 'http-proxy';
 import path from 'path';
 import bundle from './bundle';
-import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
 import config from '../config';
 
 let db;
@@ -14,9 +14,9 @@ const port = isProduction ? process.env.PORT : 3000;
 
 app.use(express.static(config.publicFolder));
 
-MongoClient.connect(`${config.mongoUrl}`, (err, database) => {
+mongoose.connect(config.mongoUrl, (err) => {
   if (err) throw err;
-  db = database; // Connect to database
+  console.log('Connected to database...');
 });
 
 if (!isProduction) {
@@ -33,8 +33,8 @@ if (!isProduction) {
   });
 }
 
-app.get('/data/test', (req, res) => {
-  db.collection(config.mongoCollection).find({}).toArray((err, items) => {
+app.get(`/data/${config.mongoCollection}`, (req, res) => {
+  mongoose.connection.collection(config.mongoCollection).find({}).toArray((err, items) => {
     if(err) throw err;
     res.json(items);
   });

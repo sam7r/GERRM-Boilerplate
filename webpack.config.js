@@ -1,17 +1,17 @@
 const Webpack = require('webpack');
 const path = require('path');
-const config = require('./config.js');
+const config = require('./config');
 
 const PATHS = {
   app: config.sourceFolder,
-  build: path.join(config.publicFolder, config.webPackDevFolder),
+  build: `${config.publicFolder}/${config.webPackDevFolder}`,
   node_modules: path.join(__dirname, 'node_modules')
 };
 
-const config = {
+const wpConfig = {
   devtool: 'eval',
   entry: [
-    `webpack-dev-server/client?${config.webPackServer}`,
+    `webpack-dev-server/client?${config.WebpackDevServer}`,
     'webpack/hot/only-dev-server',
     PATHS.app
   ],
@@ -32,4 +32,4 @@ const config = {
   plugins: [new Webpack.HotModuleReplacementPlugin()]
 };
 
-module.exports = config;
+module.exports = wpConfig;

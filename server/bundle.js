@@ -1,13 +1,14 @@
 import Webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import config  from '../webpack.config.js';
+import wpConfig  from '../webpack.config.js';
+import config from '../config';
 import path from 'path';
 
 const bundle = () => {
 
   // First we fire up Webpack an pass in the configuration we
   var bundleStart = null;
-  var compiler = Webpack(config);
+  var compiler = Webpack(wpConfig);
 
   // We give notice in the terminal when it starts bundling and
   compiler.plugin('compile', () => {
@@ -24,7 +25,7 @@ const bundle = () => {
 
     // We need to tell Webpack to serve our bundled application
     // http://localhost:3000/public -> http://localhost:8080/public
-    publicPath: '/assets/',
+    publicPath: `/${config.webPackDevFolder}/`,
 
     hot: true,
     quiet: false,
@@ -34,7 +35,9 @@ const bundle = () => {
     }
   });
 
-  bundler.listen(8080, 'localhost', () => {
+  let localAddress = config.webPackServer.replace("//", "").split(":");
+
+  bundler.listen(localAddress[2], localAddress[1], () => {
     console.log('Bundling project, please wait...');
   });
 
