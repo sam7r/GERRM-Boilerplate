@@ -11,7 +11,7 @@ const PATHS = {
 const wpConfig = {
   devtool: 'eval',
   entry: [
-    `webpack-dev-server/client?${config.WebpackDevServer}`,
+    `webpack-dev-server/client?${config.webPackServer}`,
     'webpack/hot/only-dev-server',
     PATHS.app
   ],
