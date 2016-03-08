@@ -35,9 +35,7 @@ const bundle = () => {
     }
   });
 
-  let localAddress = config.webPackServer.replace("//", "").split(":");
-
-  bundler.listen(localAddress[2], localAddress[1], () => {
+  bundler.listen(config.webPackPort, config.webPackServer.replace("http://", ""), () => {
     console.log('Bundling project, please wait...');
   });
 
