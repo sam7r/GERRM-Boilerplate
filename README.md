@@ -1,29 +1,29 @@
 # GERRM Developer Boilerplate
 
-At present this boilerplate is to aid in a quick start to the development of a React application and should not be used for production purposes.
+Boilerplate to aid in a quick start development of a React application using the following technologies.
 
-#### Application stack:
-- Node/Express
+- GraphQL
+- Express
 - React
-- Relay / GraphQL (TODO)
+- Relay (TODO)
 - MongoDB
 
-Task runner: Webpack (with Hot Loader)  
+Bundler: Webpack (with React Hot Loader)  
 Dependency manager: NPM
 
-Application TDD suite: TBC | (Mocha & Chai & Sinon) (TODO)  
-Frontend BDD suite: TBC | (Karma) (TODO)
-
-## Setup
-Providing you currently have Node installed on your machine go ahead and run the following command.
+## Usage
+Recommended **Node v5.X.X**  
+Providing you currently have Node installed on your machine go ahead and run the following command
 ```
 npm install babel-cli webpack webpack-dev-server -g
 ```
 
-Then go to the root of the folder and pull/update your dependencies.
+Then go to the root of the project and run
 ```
 npm install
 ```
+
+***Before your run the application be sure to setup a mongoDB instance and seed following the instructions below.***
 
 You should now be ready to launch your app.
 Run the following and go to http://localhost:3000
@@ -37,12 +37,13 @@ and pulling the container from the recommended page, alternatively you can use t
 
 Change the **mongoUrl** in **config.js** to the URL of your mongo database.
 
-A seed file has been setup for you start using some data on initial setup.
+A seed file has been setup for you to start using some data on initial setup.
 ```
 npm run seed
 ```
 
-Express is setup to expose the chosen collections data at a specific endpoint (currently ***/data/test***)
+Express is setup to expose the graphQL data at ***/graphql***)
+When accessed via the browser this loads GraphiQL for query building/testing
 
 ## Production Build
 
