@@ -10,8 +10,9 @@ const config = {
   webPackBuildFolder: 'build',
 
   appServerPort: 3000,
-  graphqlServer: 'http://localhost',
+  appServer: 'http://localhost',
   graphqlPort: 3001,
+  graphqlEndpoint: 'graphql',
 
   /*
     If accessing locally use Docker container ACCESS URL

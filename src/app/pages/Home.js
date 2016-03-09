@@ -1,5 +1,6 @@
 import React from 'react';
-import Heading from '../components/heading';
+import Heading from '../components/Heading';
+import UserList from '../components/UserList';
 
 export default class Home extends React.Component {
 
@@ -8,6 +9,7 @@ export default class Home extends React.Component {
       <article>
         <Heading title={"Heading"} />
         <p>Article body text</p>
+        <UserList />
       </article>
     )
   }

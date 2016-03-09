@@ -27,10 +27,10 @@ const app = () => {
     });
   }
 
-  app.all(`/graphql`, function (req, res) {
+  app.all(`/${config.graphqlEndpoint}`, function (req, res) {
     proxy.web(req, res, {
       // GraphQL data endpoint proxy
-      target: `${config.graphqlServer}:${config.graphqlPort}`
+      target: `${config.appServer}:${config.graphqlPort}`
     });
   });
 
