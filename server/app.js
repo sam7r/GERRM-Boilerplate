@@ -9,9 +9,9 @@ const app = () => {
   let proxy = httpProxy.createProxyServer({ changeOrigin: true });
 
   const isProduction = process.env.NODE_ENV === 'production';
-  const port = isProduction ? process.env.PORT : config.appServerPort;
+  const port = isProduction ? process.env.PORT : config.APP_PORT;
 
-  app.use(express.static(config.publicFolder));
+  app.use(express.static(config.PUBLIC_DIR));
 
   if (!isProduction) {
     /*
@@ -19,18 +19,18 @@ const app = () => {
       enabling Hot Reload for faster development
     */
     bundle();
-    app.all(`/${config.webPackDevFolder}/*`, function (req, res) {
+    app.all(`/${config.WP_DEV_DIR}/*`, function (req, res) {
       proxy.web(req, res, {
         // Virtual assets folder mapped to webpack dev server
-        target: `${config.webPackServer}:${config.webPackPort}`
+        target: `${config.WP_URL}:${config.WP_PORT}`
       });
     });
   }
 
-  app.all(`/${config.graphqlEndpoint}`, function (req, res) {
+  app.all(`/${config.GQL_URL_DIR}`, function (req, res) {
     proxy.web(req, res, {
       // GraphQL data endpoint proxy
-      target: `${config.appServer}:${config.graphqlPort}`
+      target: `${config.APP_URL}:${config.GQL_PORT}`
     });
   });
 

@@ -25,7 +25,7 @@ const bundle = () => {
 
     // We need to tell Webpack to serve our bundled application
     // http://localhost:3000/public -> http://localhost:8080/public
-    publicPath: `/${config.webPackDevFolder}/`,
+    publicPath: `/${config.WP_DEV_DIR}/`,
 
     hot: true,
     quiet: false,
@@ -35,7 +35,7 @@ const bundle = () => {
     }
   });
 
-  bundler.listen(config.webPackPort, config.webPackServer.replace("http://", ""), () => {
+  bundler.listen(config.WP_PORT, config.WP_URL.replace("http://", ""), () => {
     console.log('Bundling project, please wait...');
   });
 

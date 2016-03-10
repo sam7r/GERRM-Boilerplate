@@ -8,7 +8,7 @@ import config from '../config';
 const graphql = () => {
 
   let app = express();
-  const port = config.graphqlPort;
+  const port = config.GQL_PORT;
 
   app.use(json());
 

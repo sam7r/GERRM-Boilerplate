@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import User from '../data/schema/user';
 import config from '../config';
 
-mongoose.connect(config.mongoUrl);
+mongoose.connect(config.DB_URL);
 
 var users = [
   {
@@ -27,7 +27,7 @@ var users = [
   }
 ];
 
-mongoose.connection.collections[config.mongoCollection].drop( function(err) {
+mongoose.connection.collections[config.DB_NAME].drop( function(err) {
 
   User.create(users, function(err, res){
     if (err) {
