@@ -1,0 +1,114 @@
+input addUserInput {
+  name: String
+  friends: [ID]
+  clientMutationId: String!
+}
+
+type addUserPayload {
+  viewer: Viewer
+  changedUserEdge: changedUserEdge
+  clientMutationId: String!
+}
+
+type changedUserEdge {
+  node: changedUserNode
+  cursor: String!
+}
+
+type changedUserNode {
+  name: String
+  friends(after: String, first: Int, before: String, last: Int): UserFriendsConnection
+  _id: ID
+  id: ID!
+}
+
+input deleteUserInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type deleteUserPayload {
+  viewer: Viewer
+  ok: Boolean
+  id: ID!
+  clientMutationId: String!
+}
+
+interface Node {
+  id: ID!
+}
+
+enum orderByUser {
+  NAME_ASC
+  NAME_DESC
+  _ID_ASC
+  _ID_DESC
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type RootMutation {
+  addUser(input: addUserInput!): addUserPayload
+  updateUser(input: updateUserInput!): updateUserPayload
+  deleteUser(input: deleteUserInput!): deleteUserPayload
+}
+
+type RootQuery {
+  viewer: Viewer
+  node(id: ID!): Node
+  user(id: ID!): User
+  users(id: [ID], ids: [ID], orderBy: orderByUser, name: String, _id: ID): [User]
+}
+
+input updateUserInput {
+  name: String
+  friends: [ID]
+  friends_add: [ID]
+  id: ID!
+  clientMutationId: String!
+}
+
+type updateUserPayload {
+  changedUser: User
+  clientMutationId: String!
+}
+
+type User implements Node {
+  name: String
+  friends(after: String, first: Int, before: String, last: Int): UserFriendsConnection
+  _id: ID
+  id: ID!
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]
+  count: Float
+}
+
+type UserEdge {
+  node: User
+  cursor: String!
+}
+
+type UserFriendsConnection {
+  pageInfo: PageInfo!
+  edges: [UserFriendsEdge]
+  count: Float
+}
+
+type UserFriendsEdge {
+  node: User
+  cursor: String!
+}
+
+type Viewer implements Node {
+  id: ID!
+  users(after: String, first: Int, before: String, last: Int, orderBy: orderByUser, name: String, _id: ID): UserConnection
+  user(id: ID!): User
+}

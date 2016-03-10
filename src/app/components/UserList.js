@@ -1,24 +1,40 @@
 import React from 'react';
-import API from '../../../data/api';
+import Relay from 'react-relay';
 
-export default class UserList extends React.Component {
-
-  componentDidMount() {
-    this.fetchUserList();
-  }
-
-  fetchUserList() {
-    return API.fetch(this.userQuery());
-  }
-
-  userQuery() {
-    return ({ "query" : "{ users { name } }" })
-  }
+class UserList extends React.Component {
 
   render() {
-    return(
-      <div></div>
+    let users = this.props.viewer.users;
+    return (
+      <div>
+        { users.edges.map( user => {
+          return (
+            <p key={ user.node.id }>{ user.node.name }</p>
+          )
+        })}
+      </div>
     )
   }
+}
 
+exports.Container = Relay.createContainer(UserList, {
+  fragments: {
+    viewer: () => Relay.QL`
+      fragment on Viewer {
+        users(first: 5) {
+          edges {
+            node { id, name }
+          }
+        }
+      }
+    `
+  }
+})
+
+exports.queries = {
+  name: 'UserListQueries',
+  params: {},
+  queries: {
+    viewer: () => Relay.QL`query { viewer }`
+  }
 }

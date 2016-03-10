@@ -2,7 +2,7 @@ const path = require('path');
 
 const config = {
   publicFolder: path.join(__dirname, 'public'),
-  sourceFolder: path.join(__dirname, 'src/app/index'),
+  sourceFolder: path.join(__dirname, 'src/app'),
 
   webPackServer: 'http://localhost',
   webPackPort: 8080,
@@ -14,10 +14,6 @@ const config = {
   graphqlPort: 3001,
   graphqlEndpoint: 'graphql',
 
-  /*
-    If accessing locally use Docker container ACCESS URL
-    If accessing from another container user port 27017
-  */
   mongoUrl: 'mongodb://192.168.99.100:32769',
   mongoCollection: 'users'
 }
