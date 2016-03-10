@@ -1,15 +1,14 @@
-# GERRM Developer Boilerplate
+# react-relay-graphql-mongo-starter
 
 Boilerplate to aid in a quick start development of a React application using the following technologies.
 
-- GraphQL
-- Express
 - React
-- Relay (TODO)
-- MongoDB
+- Relay
+- GraphQL (RisingStack/Graffiti)
+- Node (Express)
+- MongoDB (Mongoose & RisingStack/graffiti-mongoose)
 
-Bundler: Webpack (with React Hot Loader)  
-Dependency manager: NPM
+- Bundler: Webpack (with React Hot Loader)  
 
 ## Usage
 Recommended **Node v5.X.X**  
@@ -23,27 +22,33 @@ Then go to the root of the project and run
 npm install
 ```
 
-***Before your run the application be sure to setup a mongoDB instance and seed following the instructions below.***
+The url's port's and directories can been configured in **/conifg.js**  
 
-You should now be ready to launch your app.
-Run the following and go to http://localhost:3000
+Run the following and by default the app will launch at http://localhost:3000
+
 ```
 npm start  
 ```
 
+If you make any changes to the schema you will need to recompile your changes separately and restart the server for them to take effect
+```
+npm run update-schema
+```
+
+***If you wish to run the example first seed your database following Mongo Setup instructions below.***
+
 ## Mongo Setup
-If like me you would like to use Docker to run a MongoDB container I would recommend using KiteMatic https://kitematic.com/
+If like me you would like to use Docker to run a contained MongoDB instance I would recommend using KiteMatic https://kitematic.com/
 and pulling the container from the recommended page, alternatively you can use the Docker CLI by following instructions found at  https://hub.docker.com/_/mongo/.
 
-Change the **mongoUrl** in **config.js** to the URL of your mongo database.
+Change the **mongoUrl** in **config.js** to the ACCESS_URL of your mongo database.
 
-A seed file has been setup for you to start using some data on initial setup.
+A seed utility has been setup for you to view some data on initial setup.
 ```
 npm run seed
 ```
 
-Express is setup to expose the graphQL data at ***/graphql***)
-When accessed via the browser this loads GraphiQL for query building/testing
+Express is setup to expose the graphQL data at ***/graphql***, GraphiQL ui is enabled by default in Graffiti.
 
 ## Production Build
 
