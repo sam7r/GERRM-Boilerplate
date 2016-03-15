@@ -14,11 +14,6 @@ Boilerplate to aid in a quick start development of a React application using the
 Recommended **Node v5.X.X**  
 Providing you currently have Node installed on your machine go ahead and run the following command
 ```
-npm install babel-cli webpack webpack-dev-server -g
-```
-
-Then go to the root of the project and run
-```
 npm install
 ```
 
