@@ -16,7 +16,7 @@ const config = {
   GQL_PORT: 3001,
   GQL_URL_DIR: 'graphql',
   // Database config
-  DB_URL: 'mongodb://192.168.99.100:32769',
+  DB_URL: 'mongodb://localhost:27017',
   DB_NAME: 'users'
 }
 

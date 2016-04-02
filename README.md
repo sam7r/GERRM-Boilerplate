@@ -33,11 +33,14 @@ npm run update-schema
 ***If you wish to run the example first seed your database following Mongo Setup instructions below.***
 
 ## Mongo Setup
-If like me you would like to use Docker to run a contained MongoDB instance I would recommend using KiteMatic https://kitematic.com/
-and pulling the container from the recommended page, alternatively you can use the Docker CLI by following instructions found at  https://hub.docker.com/_/mongo/.
+If you wish to use a docker container I would recommend using KiteMatic https://kitematic.com/
+and pulling from the latest version from the "recommended" page, alternatively you can use the Docker CLI by following instructions found at  https://hub.docker.com/_/mongo/.
 
-Change the **mongoUrl** in **config.js** to the ACCESS_URL of your mongo database.
+Change the **mongoUrl** in **config.js** to the ACCESS_URL of your MongoDB.
 
+By default the config file points to a local machine instance **mongodb://localhost:27017**
+
+Regardless of your chosen method, to run the example you will first need to seed the database.
 A seed utility has been setup for you to view some data on initial setup.
 ```
 npm run seed
